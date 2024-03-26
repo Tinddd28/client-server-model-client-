@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
-    sm = new sales_manager();
+    sm = new sales_manager(socket);
     socket->disconnectFromHost();
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     connect(socket, &QTcpSocket::disconnected, socket, &MainWindow::deleteLater);
@@ -56,7 +56,6 @@ void MainWindow::slotReadyRead()
                 }
                 else if (status == "salesmanager")
                 {
-                    sm->setSocket(socket);
                     sm->show();
                     this->hide();
 

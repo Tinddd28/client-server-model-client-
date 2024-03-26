@@ -1,8 +1,8 @@
 #include "sales_manager.h"
 #include "ui_sales_manager.h"
 
-sales_manager::sales_manager(QWidget *parent) :
-    QWidget(parent), socket(nullptr),
+sales_manager::sales_manager(QTcpSocket* socket, QWidget *parent) :
+    QWidget(parent), socket(socket),
     ui(new Ui::sales_manager)
 {
     ui->setupUi(this);
@@ -15,10 +15,6 @@ sales_manager::~sales_manager()
     delete ui;
 }
 
-void sales_manager::setSocket(QTcpSocket *socket)
-{
-    this->socket = socket;
-}
 
 void sales_manager::on_back_clicked()
 {
@@ -39,34 +35,6 @@ void sales_manager::on_see_items_clicked()
     this->hide();
 }
 
-void sales_manager::slotReadyRead()
-{
-    QDataStream in(socket);
-    in.setVersion(QDataStream::Qt_5_14);
-    if (in.status() == QDataStream::Ok)
-    {
-        for (;;)
-        {
-            if (nextBlockSize == 0)
-            {
-                if (socket->bytesAvailable() < 2) break;
-                in >> nextBlockSize;
-            }
-            if (socket->bytesAvailable() < nextBlockSize) break;
-            int flagOfData;
-            in >> flagOfData;
-            qDebug() << flagOfData;
-            if (flagOfData == 2) // items data
-            {
-                QString jsonString;
-                in >> jsonString;
-                it->outTable(jsonString);
-                this->hide();
-                qDebug() << jsonString;
-            }
-        }
-    }
-}
 
 
 
