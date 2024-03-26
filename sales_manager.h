@@ -19,9 +19,11 @@ class sales_manager : public QWidget
     Q_OBJECT
 
 public:
-    explicit sales_manager(QTcpSocket* socket, QWidget *parent = nullptr);
+    explicit sales_manager(QWidget *parent = nullptr);
     ~sales_manager();
     items *it;
+    void setSocket(QTcpSocket* socket);
+
 private:
     QTcpSocket *socket;
     QByteArray Data;
@@ -29,9 +31,8 @@ private:
     //void see_table(const QString &jsonString);
 
 
-
 public slots:
-    void slotReadyRead();
+    //void slotReadyRead();
 
 private slots:
     void on_back_clicked();
