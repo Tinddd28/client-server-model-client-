@@ -6,17 +6,12 @@ sales_manager::sales_manager(QWidget *parent) :
     ui(new Ui::sales_manager)
 {
     ui->setupUi(this);
-    //connect(socket, &QTcpSocket::readyRead, this, &sales_manager::slotReadyRead);
-    //socket = new QTcpSocket;
     it = new items();
-    //socket->connectToHost("192.168.6.133", 2323);
     connect(it, &items::backtosm, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
 {
-    //disconnect(socket, &QTcpSocket::readyRead, this, &sales_manager::slotReadyRead);
-    //socket->disconnectFromHost();
     delete ui;
 }
 

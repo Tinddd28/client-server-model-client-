@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     socket->connectToHost("192.168.6.133", 2323);
     nextBlockSize = 0;
-    qDebug() << "hello!";
 
 }
 
