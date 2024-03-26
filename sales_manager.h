@@ -19,9 +19,8 @@ class sales_manager : public QWidget
     Q_OBJECT
 
 public:
-    explicit sales_manager(QWidget *parent = nullptr);
+    explicit sales_manager(QTcpSocket* socket, QWidget *parent = nullptr);
     ~sales_manager();
-    void setSocket(QTcpSocket* socket);
     items *it;
 private:
     QTcpSocket *socket;
