@@ -17,19 +17,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    director.cpp \
     items.cpp \
     main.cpp \
     mainwindow.cpp \
+    markmanager.cpp \
+    order.cpp \
     sales_manager.cpp
 
 HEADERS += \
+    director.h \
     items.h \
     mainwindow.h \
+    markmanager.h \
+    order.h \
     sales_manager.h
 
 FORMS += \
+    director.ui \
     items.ui \
     mainwindow.ui \
+    markmanager.ui \
+    order.ui \
     sales_manager.ui
 
 # Default rules for deployment.

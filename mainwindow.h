@@ -23,6 +23,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+    sales_manager* sm;
+
 private slots:
     void on_pushButton_clicked();
     void slotReadyRead();
@@ -31,13 +34,15 @@ private slots:
 
     void on_checkBox_stateChanged();
 
+
+
 private:
+    QString server_ip = "192.168.6.133";
+    int server_port = 2323;
     QTcpSocket *socket;
     QByteArray Data;
-    void SendToServer();
-    quint16 nextBlockSize;
     void SendLogin(QString user, QString password);
-    sales_manager* sm;
+    void selection_role(int id);
 
 
 private:

@@ -7,20 +7,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
-    sm = new sales_manager();
     socket->disconnectFromHost();
+    socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
-    connect(socket, &QTcpSocket::disconnected, socket, &MainWindow::deleteLater);
+    sm = new sales_manager(server_ip, server_port);
     connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
-    socket->connectToHost("192.168.6.133", 2323);
-    nextBlockSize = 0;
-
+    connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
 }
 
 MainWindow::~MainWindow()
 {
     delete socket;
+
     delete ui;
 }
 
@@ -31,53 +30,50 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::slotReadyRead()
 {
-    QDataStream in(socket);
-    in.setVersion(QDataStream::Qt_5_14);
-    if (in.status() == QDataStream::Ok)
+    QByteArray responseData = socket->readAll();
+    QList<QByteArray> responses = responseData.split('#');
+
+    for (const QByteArray& response : responses)
     {
-        for (;;)
+        if (response.isEmpty()) continue;
+
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QJsonObject jsonObj = jsonDoc.object();
+
+        QString window = jsonObj.value("window").toString();
+        if(window == "mainwindow")
         {
-            if (nextBlockSize == 0)
+            QString action = jsonObj.value("action").toString();
+            if (action == "login")
             {
-                if (socket->bytesAvailable() < 2) break;
-                in >> nextBlockSize;
-            }
-            if (socket->bytesAvailable() < nextBlockSize) break;
-            int flagOfData;
-            in >> flagOfData;
-            if (flagOfData == 1) //login
-            {
-                QString status;
-                in >> status;
-                qDebug() << status;
-                if (status == "director")
+                QString status = jsonObj.value("status").toString();
+                if (status == "success")
                 {
-
+                    int id = jsonObj.value("id").toInt();
+                    selection_role(id);
                 }
-                else if (status == "salesmanager")
-                {
-                    sm->setSocket(socket);
-                    sm->show();
-                    this->hide();
-
-                }
-
-
+                else if (status == "fail")
+                    qDebug() << "Erorr";
             }
-            else if (flagOfData == 2) //data
-            {
-                QString jsonString;
-                in >> jsonString;
-                qDebug() << jsonString;
-                sm->it->outTable(jsonString);
-            }
-            nextBlockSize = 0;
-            break;
         }
     }
-    else
+}
+
+void MainWindow::selection_role(int id)
+{
+    socket->disconnected();
+    if (id == 1)
     {
-        qDebug() << "error";
+
+    }
+    else if (id == 2)
+    {
+        sm->show();
+        this->hide();
+    }
+    else if (id == 3)
+    {
+
     }
 }
 
@@ -85,14 +81,20 @@ void MainWindow::SendLogin(QString user, QString password)
 {
     QByteArray passwordData = password.toUtf8();
     QByteArray passwordHash = QCryptographicHash::hash(passwordData, QCryptographicHash::Sha256).toHex();
-    qDebug() << passwordHash;
-    Data.clear();
-    QDataStream out(&Data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_14);
-    out << quint16(0) << 1 << user << passwordHash;
-    out.device()->seek(0);
-    out << quint16(Data.size() - sizeof(quint16));
-    socket->write(Data);
+    QString pass = passwordHash;
+
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "mainwindow");
+    jsonObj.insert("action", "login");
+    QJsonObject data;
+    data.insert("us_name", user);
+    data.insert("us_pass", pass);
+
+    jsonObj.insert("data", data);
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+
     ui->lineEdit->clear();
     ui->lineEdit_2->clear();
 }
