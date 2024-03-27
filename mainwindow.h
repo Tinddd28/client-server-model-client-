@@ -34,6 +34,7 @@ private slots:
 
     void on_checkBox_stateChanged();
 
+    void connectToServer();
 
 
 private:

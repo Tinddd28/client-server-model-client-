@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     socket->disconnectFromHost();
-    socket->connectToHost(server_ip, server_port);
+    //socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     sm = new sales_manager(server_ip, server_port);
     connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
@@ -18,9 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete socket;
-
     delete ui;
+}
+
+void MainWindow::connectToServer()
+{
+    socket->connectToHost(server_ip, server_port);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -62,6 +65,7 @@ void MainWindow::slotReadyRead()
 void MainWindow::selection_role(int id)
 {
     socket->disconnected();
+    socket->close();
     if (id == 1)
     {
 
@@ -79,6 +83,13 @@ void MainWindow::selection_role(int id)
 
 void MainWindow::SendLogin(QString user, QString password)
 {
+    if(socket->state() != QAbstractSocket::ConnectedState){
+           connectToServer();
+           QMessageBox::warning(this, "Ошибка", "Нет соединения с сервером");
+
+           return;
+    }
+
     QByteArray passwordData = password.toUtf8();
     QByteArray passwordHash = QCryptographicHash::hash(passwordData, QCryptographicHash::Sha256).toHex();
     QString pass = passwordHash;

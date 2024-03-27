@@ -18,6 +18,7 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
 
 sales_manager::~sales_manager()
 {
+    delete socket;
     delete ui;
 }
 
@@ -64,7 +65,7 @@ void sales_manager::readinfo()
 void sales_manager::on_back_clicked()
 {
     emit backToMain();
-    this->hide();
+    this->close();
 }
 
 void sales_manager::on_see_items_clicked()
