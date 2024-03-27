@@ -34,14 +34,15 @@ private slots:
 
     void on_checkBox_stateChanged();
 
+
+
 private:
+    QString server_ip = "192.168.6.133";
+    int server_port = 2323;
     QTcpSocket *socket;
     QByteArray Data;
     void SendLogin(QString user, QString password);
     void selection_role(int id);
-
-
-
 
 
 private:

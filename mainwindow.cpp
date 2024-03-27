@@ -8,18 +8,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     socket->disconnectFromHost();
-    sm = new sales_manager();
+    socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
-
+    sm = new sales_manager(server_ip, server_port);
     connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
-    socket->connectToHost("192.168.6.133", 2323);
-
+    connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
 }
 
 MainWindow::~MainWindow()
 {
     delete socket;
+
     delete ui;
 }
 
@@ -61,14 +61,13 @@ void MainWindow::slotReadyRead()
 
 void MainWindow::selection_role(int id)
 {
-    socket->disconnect();
+    socket->disconnected();
     if (id == 1)
     {
 
     }
     else if (id == 2)
     {
-        sm->setSocket(socket);
         sm->show();
         this->hide();
     }
@@ -83,6 +82,7 @@ void MainWindow::SendLogin(QString user, QString password)
     QByteArray passwordData = password.toUtf8();
     QByteArray passwordHash = QCryptographicHash::hash(passwordData, QCryptographicHash::Sha256).toHex();
     QString pass = passwordHash;
+
     QJsonObject jsonObj;
     jsonObj.insert("window", "mainwindow");
     jsonObj.insert("action", "login");
