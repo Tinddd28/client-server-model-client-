@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete socket;
     delete ui;
 }
 
@@ -28,6 +29,11 @@ void MainWindow::connectToServer()
 
 void MainWindow::on_pushButton_clicked()
 {
+    if (ui->lineEdit->text() == "" && ui->lineEdit_2->text() == "")
+    {
+        QMessageBox::warning(this, "Ошибка\t", "Заполните поля логина и пароля!");
+        flag_auth = 1;
+    }
     SendLogin(ui->lineEdit->text(), ui->lineEdit_2->text());
 }
 
@@ -56,7 +62,11 @@ void MainWindow::slotReadyRead()
                     selection_role(id);
                 }
                 else if (status == "fail")
-                    qDebug() << "Erorr";
+                {
+                    if (flag_auth == 0)
+                        QMessageBox::warning(this, "Ошибка\t", "Неправильные данные");
+                    flag_auth = 0;
+                }
             }
         }
     }

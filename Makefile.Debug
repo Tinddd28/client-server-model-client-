@@ -1049,7 +1049,15 @@ debug\director.obj: director.cpp director.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_director.h
+		ui_director.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h
 
 debug\items.obj: items.cpp items.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QWidget \
@@ -1165,7 +1173,40 @@ debug\items.obj: items.cpp items.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonParseError \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
-		ui_items.h
+		ui_items.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QTableWidget \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtableview.h
 
 debug\main.obj: main.cpp mainwindow.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QMainWindow \
@@ -1449,7 +1490,35 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonDocument \
 		items.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qpen.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QVBoxLayout
 
 debug\markmanager.obj: markmanager.cpp markmanager.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QWidget \
@@ -1556,7 +1625,15 @@ debug\markmanager.obj: markmanager.cpp markmanager.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_markmanager.h
+		ui_markmanager.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h
 
 debug\order.obj: order.cpp order.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QWidget \
@@ -1663,7 +1740,48 @@ debug\order.obj: order.cpp order.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_order.h
+		ui_order.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QComboBox \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qcombobox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qpen.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QVBoxLayout
 
 debug\sales_manager.obj: sales_manager.cpp sales_manager.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QWidget \
@@ -1785,7 +1903,27 @@ debug\sales_manager.obj: sales_manager.cpp sales_manager.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonDocument \
 		items.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
-		ui_sales_manager.h
+		ui_sales_manager.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qicon.h
 
 debug\moc_director.obj: debug\moc_director.cpp 
 

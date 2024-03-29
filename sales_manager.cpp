@@ -41,7 +41,6 @@ void sales_manager::readinfo()
 
         QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
         QJsonObject jsonObj = jsonDoc.object();
-
         QString window = jsonObj.value("window").toString();
         if (window == "salesmanager")
         {
@@ -52,13 +51,38 @@ void sales_manager::readinfo()
                 if (data == "items")
                 {
                     QString data_items = jsonObj.value("items").toString();
-
+                    if (checkedjson(data_items))
+                        qDebug() << "AGDDGAGADAG";
+                    else
+                        qDebug() << data_items;
                     it->outTable(data_items);
                     qDebug() << data_items;
                 }
+                else if (data == "clients")
+                {
+                    QString data_clients = jsonObj.value("clients").toString();
+                    if (checkedjson(data_clients))
+                        QMessageBox::warning(this, "Ошибка!\t", "База с клиентами пуста!");
+                    else
+                        qDebug() << data_clients;
+                }
             }
         }
+    }
+}
 
+bool sales_manager::checkedjson(QString json)
+{
+    QJsonParseError error;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(json.toUtf8(), &error);
+    if (error.error != QJsonParseError::NoError) {
+            qDebug() << "Ошибка при парсинге JSON:" << error.errorString();
+            return false;
+        }
+    if (!(jsonDoc.isArray()) || jsonDoc.isEmpty()) {
+        return 0;
+    } else {
+        return 1;
     }
 }
 
@@ -83,6 +107,13 @@ void sales_manager::on_see_items_clicked()
 }
 
 
+void sales_manager::on_see_clients_clicked()
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "clients");
 
-
-
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}

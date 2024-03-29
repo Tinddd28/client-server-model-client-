@@ -35,7 +35,7 @@ void items::outTable(const QString &jsonString)
         qDebug() << "JSON не массив";
         return;
     }
-
+    qDebug() << "hello";
     QJsonArray jsonArray = jsonDoc.array();
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);

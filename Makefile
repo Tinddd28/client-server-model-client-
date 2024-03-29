@@ -259,6 +259,7 @@ Makefile: client.pro ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\win32-msvc\qmake.con
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\qt_config.prf \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\exclusive_builds.prf \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\common\msvc-version.conf \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\toolchain.prf \
@@ -289,7 +290,6 @@ Makefile: client.pro ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\win32-msvc\qmake.con
 		..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Network.prl \
 		..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Core.prl \
 		..\..\..\qt\5.14.2\msvc2015_64\lib\qtmain.prl \
-		.qmake.stash \
 		..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\build_pass.prf \
 		..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Widgetsd.prl \
 		..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Guid.prl \
@@ -472,6 +472,7 @@ Makefile: client.pro ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\win32-msvc\qmake.con
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\qt_config.prf:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\exclusive_builds.prf:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\common\msvc-version.conf:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\toolchain.prf:
@@ -502,7 +503,6 @@ client.pro:
 ..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Network.prl:
 ..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Core.prl:
 ..\..\..\qt\5.14.2\msvc2015_64\lib\qtmain.prl:
-.qmake.stash:
 ..\..\..\qt\5.14.2\msvc2015_64\mkspecs\features\build_pass.prf:
 ..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Widgetsd.prl:
 ..\..\..\qt\5.14.2\msvc2015_64\lib\Qt5Guid.prl:

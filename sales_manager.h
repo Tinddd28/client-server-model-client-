@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QMessageBox>
 
 #include <items.h>
 
@@ -31,8 +32,7 @@ private:
     QString server_ip;
     int server_port;
     int user_id;
-    QByteArray Data;
-    quint16 nextBlockSize;
+    bool checkedjson(QString json);
 
 
 public slots:
@@ -43,6 +43,8 @@ private slots:
 
     void on_see_items_clicked();
 
+
+    void on_see_clients_clicked();
 
 signals:
     void backToMain();

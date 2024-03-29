@@ -44,6 +44,7 @@ private:
     QByteArray Data;
     void SendLogin(QString user, QString password);
     void selection_role(int id);
+    int flag_auth = 0;
 
 
 private:
