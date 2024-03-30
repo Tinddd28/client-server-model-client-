@@ -10,6 +10,7 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
     this->server_port = server_port;
     it = new items();
     ord = new order();
+    cl = new clients();
     connect(it, &items::backtosm, this, &sales_manager::show);
     connect(ord, &order::backToSm, this, &sales_manager::show);
     connect(cl, &clients::backToSm, this, &sales_manager::show);
@@ -17,6 +18,9 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
 
 sales_manager::~sales_manager()
 {
+    delete it;
+    delete ord;
+    delete cl;
     delete socket;
     delete ui;
 }
@@ -53,19 +57,21 @@ void sales_manager::readinfo()
                     if (checkedjson(data_items))
                     {
                         it->outTable(data_items);
-                        qDebug() << data_items;
                     }
                     else
-                        qDebug() << "empty";
+                        QMessageBox::warning(this, "Ошибка!\t", "Список товаров пуст!");
 
                 }
                 else if (data == "clients")
                 {
                     QString data_clients = jsonObj.value("clients").toString();
                     if (checkedjson(data_clients))
-                        QMessageBox::warning(this, "Ошибка!\t", "База с клиентами пуста!");
+                    {
+                        cl->OutTable(data_clients);
+                    }
+
                     else
-                        qDebug() << data_clients; //write code for clients; create form
+                        QMessageBox::warning(this, "Ошибка!\t", "База с клиентами пуста!");
                 }
                 else if (data == "order")
                 {
@@ -95,7 +101,7 @@ bool sales_manager::checkedjson(QString json)
             qDebug() << "Ошибка при парсинге JSON:" << error.errorString();
             return false;
         }
-    if (!(jsonDoc.isArray()) || jsonDoc.isEmpty()) {
+    if (jsonDoc.array().isEmpty() || jsonDoc.isEmpty()) {
         return 0;
     } else {
         return 1;
@@ -132,7 +138,9 @@ void sales_manager::on_see_clients_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-    //write clients view
+
+    cl->show();
+    this->hide();
 }
 
 void sales_manager::on_order_clicked()

@@ -2,6 +2,11 @@
 #define CLIENTS_H
 
 #include <QWidget>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QDebug>
 
 namespace Ui {
 class clients;
@@ -14,6 +19,7 @@ class clients : public QWidget
 public:
     explicit clients(QWidget *parent = nullptr);
     ~clients();
+    void OutTable(QString jsonString);
 
 private slots:
     void on_back_clicked();
