@@ -24,18 +24,6 @@ void items::outTable(const QString &jsonString)
     QJsonParseError error;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString.toUtf8(), &error);
 
-    if (error.error != QJsonParseError::NoError)
-    {
-        qDebug() << "Ошибка разбора JSON: " << error.errorString();
-        return;
-    }
-
-    if (!jsonDoc.isArray())
-    {
-        qDebug() << "JSON не массив";
-        return;
-    }
-    qDebug() << "hello";
     QJsonArray jsonArray = jsonDoc.array();
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);

@@ -2,6 +2,11 @@
 #define ORDER_H
 
 #include <QWidget>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QDebug>
 
 namespace Ui {
 class order;
@@ -15,8 +20,16 @@ public:
     explicit order(QWidget *parent = nullptr);
     ~order();
 
+    void addInComboBox(QString json);
+
+
 private slots:
     void on_order_2_clicked();
+    void on_back_clicked();
+
+
+signals:
+    void backToSm();
 
 private:
     Ui::order *ui;

@@ -10,6 +10,7 @@
 #include <QMessageBox>
 
 #include <items.h>
+#include <order.h>
 
 namespace Ui {
 class sales_manager;
@@ -23,6 +24,7 @@ public:
     explicit sales_manager(QString server_ip, int server_port, QWidget *parent = nullptr);
     ~sales_manager();
     items *it;
+    order *ord;
     void resetSocket();
 
 
@@ -33,6 +35,7 @@ private:
     int server_port;
     int user_id;
     bool checkedjson(QString json);
+    bool checkedAndExec(QString json, QString json2);
 
 
 public slots:

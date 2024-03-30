@@ -9,7 +9,9 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
     this->server_ip = server_ip;
     this->server_port = server_port;
     it = new items();
+    ord = new order();
     connect(it, &items::backtosm, this, &sales_manager::show);
+    connect(ord, &order::backToSm, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
@@ -48,11 +50,13 @@ void sales_manager::readinfo()
                 {
                     QString data_items = jsonObj.value("items").toString();
                     if (checkedjson(data_items))
-                        qDebug() << "AGDDGAGADAG";
-                    else
+                    {
+                        it->outTable(data_items);
                         qDebug() << data_items;
-                    it->outTable(data_items);
-                    qDebug() << data_items;
+                    }
+                    else
+                        qDebug() << "empty";
+
                 }
                 else if (data == "clients")
                 {
@@ -60,7 +64,22 @@ void sales_manager::readinfo()
                     if (checkedjson(data_clients))
                         QMessageBox::warning(this, "Ошибка!\t", "База с клиентами пуста!");
                     else
-                        qDebug() << data_clients;
+                        qDebug() << data_clients; //write code for clients; create form
+                }
+                else if (data == "order")
+                {
+                    QJsonObject data_order = jsonObj.value("order").toObject();
+                    QString order_items = data_order.value("order_items").toString();
+                    QString order_clients = data_order.value("order_clients").toString();
+                    if (checkedjson(order_items))
+                    {
+                        ord->addInComboBox(order_items);
+                        //write code for order
+                    }
+                    else
+                    {
+                        QMessageBox::warning(this, "Ошибка!\t", "Список товаров пуст!");
+                    }
                 }
             }
         }
@@ -112,6 +131,7 @@ void sales_manager::on_see_clients_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
+    //write clients view
 }
 
 void sales_manager::on_order_clicked()
@@ -123,4 +143,7 @@ void sales_manager::on_order_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
+
+    ord->show();
+    this->hide();
 }
