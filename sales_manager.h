@@ -11,6 +11,7 @@
 
 #include <items.h>
 #include <order.h>
+#include <clients.h>
 
 namespace Ui {
 class sales_manager;
@@ -25,6 +26,7 @@ public:
     ~sales_manager();
     items *it;
     order *ord;
+    clients *cl;
     void resetSocket();
 
 

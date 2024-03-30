@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    clients.cpp \
     director.cpp \
     items.cpp \
     main.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
     sales_manager.cpp
 
 HEADERS += \
+    clients.h \
     director.h \
     items.h \
     mainwindow.h \
@@ -34,6 +36,7 @@ HEADERS += \
     sales_manager.h
 
 FORMS += \
+    clients.ui \
     director.ui \
     items.ui \
     mainwindow.ui \

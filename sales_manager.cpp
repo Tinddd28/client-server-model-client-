@@ -12,6 +12,7 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
     ord = new order();
     connect(it, &items::backtosm, this, &sales_manager::show);
     connect(ord, &order::backToSm, this, &sales_manager::show);
+    connect(cl, &clients::backToSm, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
