@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QCryptographicHash>
 #include <sales_manager.h>
+#include <director.h>
 
 #include <QDebug>
 QT_BEGIN_NAMESPACE
@@ -25,6 +26,7 @@ public:
 
 
     sales_manager* sm;
+    director* dir;
 
 private slots:
     void on_pushButton_clicked();

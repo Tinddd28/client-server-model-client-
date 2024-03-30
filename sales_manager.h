@@ -46,6 +46,8 @@ private slots:
 
     void on_see_clients_clicked();
 
+    void on_order_clicked();
+
 signals:
     void backToMain();
 

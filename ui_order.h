@@ -12,11 +12,11 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,87 +25,132 @@ class Ui_order
 {
 public:
     QPushButton *order_2;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QLineEdit *lineEdit;
     QLabel *label_3;
     QComboBox *comboBox;
-    QLabel *label_4;
-    QHBoxLayout *horizontalLayout_2;
+    QLabel *label;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QLabel *label_5;
+    QLineEdit *name;
+    QLabel *label_6;
+    QLineEdit *surname;
+    QLabel *label_7;
+    QLineEdit *mail;
+    QLabel *label_8;
+    QLineEdit *phone;
+    QWidget *widget1;
+    QFormLayout *formLayout;
     QLabel *label_2;
     QLineEdit *price;
+    QLabel *label_4;
+    QLineEdit *amount;
 
     void setupUi(QWidget *order)
     {
         if (order->objectName().isEmpty())
             order->setObjectName(QString::fromUtf8("order"));
-        order->resize(437, 334);
+        order->resize(390, 420);
         order_2 = new QPushButton(order);
         order_2->setObjectName(QString::fromUtf8("order_2"));
-        order_2->setGeometry(QRect(150, 250, 141, 31));
+        order_2->setGeometry(QRect(120, 370, 141, 31));
         QFont font;
         font.setPointSize(12);
         order_2->setFont(font);
+        label_3 = new QLabel(order);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(110, 340, 16, 24));
+        label_3->setFont(font);
+        comboBox = new QComboBox(order);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setGeometry(QRect(140, 230, 101, 30));
+        comboBox->setFont(font);
+        label = new QLabel(order);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(70, 20, 271, 24));
+        label->setFont(font);
         widget = new QWidget(order);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(120, 50, 209, 168));
-        widget->setFont(font);
-        verticalLayout = new QVBoxLayout(widget);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label = new QLabel(widget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setFont(font);
+        widget->setGeometry(QRect(60, 70, 266, 140));
+        gridLayout = new QGridLayout(widget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font);
 
-        horizontalLayout->addWidget(label);
+        gridLayout->addWidget(label_5, 0, 0, 1, 1);
 
-        lineEdit = new QLineEdit(widget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setFont(font);
+        name = new QLineEdit(widget);
+        name->setObjectName(QString::fromUtf8("name"));
+        name->setFont(font);
 
-        horizontalLayout->addWidget(lineEdit);
+        gridLayout->addWidget(name, 0, 1, 1, 1);
 
+        label_6 = new QLabel(widget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setFont(font);
 
-        verticalLayout->addLayout(horizontalLayout);
+        gridLayout->addWidget(label_6, 1, 0, 1, 1);
 
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setFont(font);
+        surname = new QLineEdit(widget);
+        surname->setObjectName(QString::fromUtf8("surname"));
+        surname->setFont(font);
 
-        verticalLayout->addWidget(label_3);
+        gridLayout->addWidget(surname, 1, 1, 1, 1);
 
-        comboBox = new QComboBox(widget);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setFont(font);
+        label_7 = new QLabel(widget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setFont(font);
 
-        verticalLayout->addWidget(comboBox);
+        gridLayout->addWidget(label_7, 2, 0, 1, 1);
 
-        label_4 = new QLabel(widget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setFont(font);
+        mail = new QLineEdit(widget);
+        mail->setObjectName(QString::fromUtf8("mail"));
+        mail->setFont(font);
 
-        verticalLayout->addWidget(label_4);
+        gridLayout->addWidget(mail, 2, 1, 1, 1);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_2 = new QLabel(widget);
+        label_8 = new QLabel(widget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setFont(font);
+
+        gridLayout->addWidget(label_8, 3, 0, 1, 1);
+
+        phone = new QLineEdit(widget);
+        phone->setObjectName(QString::fromUtf8("phone"));
+        phone->setFont(font);
+
+        gridLayout->addWidget(phone, 3, 1, 1, 1);
+
+        widget1 = new QWidget(order);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(30, 280, 319, 98));
+        formLayout = new QFormLayout(widget1);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(widget1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setFont(font);
 
-        horizontalLayout_2->addWidget(label_2);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
-        price = new QLineEdit(widget);
+        price = new QLineEdit(widget1);
         price->setObjectName(QString::fromUtf8("price"));
         price->setFont(font);
 
-        horizontalLayout_2->addWidget(price);
+        formLayout->setWidget(1, QFormLayout::FieldRole, price);
 
+        label_4 = new QLabel(widget1);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setFont(font);
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
+
+        amount = new QLineEdit(widget1);
+        amount->setObjectName(QString::fromUtf8("amount"));
+        amount->setFont(font);
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, amount);
 
 
         retranslateUi(order);
@@ -117,10 +162,15 @@ public:
     {
         order->setWindowTitle(QCoreApplication::translate("order", "Form", nullptr));
         order_2->setText(QCoreApplication::translate("order", "\320\236\321\204\320\276\321\200\320\274\320\270\321\202\321\214", nullptr));
-        label->setText(QCoreApplication::translate("order", "\320\232\320\273\320\270\320\265\320\275\321\202", nullptr));
         label_3->setText(QString());
-        label_4->setText(QString());
+        label->setText(QCoreApplication::translate("order", "\320\230\320\275\321\204\320\276\321\200\320\274\320\260\321\206\320\270\321\217 \320\276 \320\272\320\273\320\270\320\265\320\275\321\202\320\265", nullptr));
+        label_5->setText(QCoreApplication::translate("order", "\320\230\320\274\321\217", nullptr));
+        name->setText(QString());
+        label_6->setText(QCoreApplication::translate("order", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
+        label_7->setText(QCoreApplication::translate("order", "\320\237\320\276\321\207\321\202\320\260", nullptr));
+        label_8->setText(QCoreApplication::translate("order", "\320\242\320\265\320\273\320\265\321\204\320\276\320\275", nullptr));
         label_2->setText(QCoreApplication::translate("order", "\320\241\321\202\320\276\320\270\320\274\320\276\321\201\321\202\321\214", nullptr));
+        label_4->setText(QCoreApplication::translate("order", "\320\232\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
     } // retranslateUi
 
 };

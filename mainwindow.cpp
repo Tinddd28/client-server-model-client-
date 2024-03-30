@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     //socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     sm = new sales_manager(server_ip, server_port);
+    dir = new director(server_ip, server_port);
     connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
@@ -78,7 +79,8 @@ void MainWindow::selection_role(int id)
     socket->close();
     if (id == 1)
     {
-
+        dir->show();
+        this->hide();
     }
     else if (id == 2)
     {

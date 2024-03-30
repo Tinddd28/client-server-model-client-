@@ -6,14 +6,10 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
     ui(new Ui::sales_manager)
 {
     ui->setupUi(this);
-    //socket = new QTcpSocket(this);
-    //this->socket = socket;
     this->server_ip = server_ip;
     this->server_port = server_port;
     it = new items();
-//    socket->connectToHost(server_ip, server_port);
-//    connect(socket, &QTcpSocket::readyRead, this, &sales_manager::readinfo);
-      connect(it, &items::backtosm, this, &sales_manager::show);
+    connect(it, &items::backtosm, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
@@ -113,6 +109,17 @@ void sales_manager::on_see_clients_clicked()
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
     jsonObj.insert("data", "clients");
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}
+
+void sales_manager::on_order_clicked()
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "order");
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());

@@ -12,3 +12,8 @@ order::~order()
 {
     delete ui;
 }
+
+void order::on_order_2_clicked()
+{
+
+}

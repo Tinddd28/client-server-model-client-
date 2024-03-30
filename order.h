@@ -15,6 +15,9 @@ public:
     explicit order(QWidget *parent = nullptr);
     ~order();
 
+private slots:
+    void on_order_2_clicked();
+
 private:
     Ui::order *ui;
 };
