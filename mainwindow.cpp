@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete socket;
+    delete sm;
+    delete dir;
     delete ui;
 }
 

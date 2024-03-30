@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QJsonParseError>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class order;
@@ -21,15 +22,23 @@ public:
     ~order();
 
     void addInComboBox(QString json);
+    void setClients(QString json);
+    void setItems(QString json);
 
+private:
+    QJsonDocument clients;
+    QJsonDocument items;
+    void changeContactInfo(QString mail, QString phone);
 
 private slots:
     void on_order_2_clicked();
     void on_back_clicked();
+    void SeeAmount();
 
 
 signals:
     void backToSm();
+    void broadcastdata(QJsonDocument, QJsonDocument);
 
 private:
     Ui::order *ui;

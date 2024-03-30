@@ -14,6 +14,8 @@ sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent
     connect(it, &items::backtosm, this, &sales_manager::show);
     connect(ord, &order::backToSm, this, &sales_manager::show);
     connect(cl, &clients::backToSm, this, &sales_manager::show);
+    connect(ord, &order::broadcastdata, this, &sales_manager::SendChanges);
+    connect(ord, &order::broadcastdata, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
@@ -23,6 +25,22 @@ sales_manager::~sales_manager()
     delete cl;
     delete socket;
     delete ui;
+}
+
+void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "changes");
+    QJsonObject js;
+    js.insert("items", jsonItems.object());
+    qDebug() << jsonClients;
+    js.insert("clients", jsonClients.object());
+    jsonObj.insert("changes", js);
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
 }
 
 void sales_manager::resetSocket()
@@ -80,6 +98,8 @@ void sales_manager::readinfo()
                     QString order_clients = data_order.value("order_clients").toString();
                     if (checkedjson(order_items))
                     {
+                        ord->setClients(order_clients);
+                        ord->setItems(order_items);
                         ord->addInComboBox(order_items);
                         //write code for order
                     }

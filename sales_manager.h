@@ -29,8 +29,6 @@ public:
     clients *cl;
     void resetSocket();
 
-
-
 private:
     QTcpSocket *socket;
     QString server_ip;
@@ -38,6 +36,7 @@ private:
     int user_id;
     bool checkedjson(QString json);
     bool checkedAndExec(QString json, QString json2);
+    void SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients);
 
 
 public slots:
@@ -45,12 +44,8 @@ public slots:
 
 private slots:
     void on_back_clicked();
-
     void on_see_items_clicked();
-
-
     void on_see_clients_clicked();
-
     void on_order_clicked();
 
 signals:
