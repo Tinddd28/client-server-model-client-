@@ -17,6 +17,7 @@ void clients::on_back_clicked()
 {
     emit backToSm();
     this->close();
+    ui->tableWidget->clear();
 }
 
  void clients::OutTable(QString jsonString)

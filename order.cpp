@@ -6,7 +6,27 @@ order::order(QWidget *parent) :
     ui(new Ui::order)
 {
     ui->setupUi(this);
+    QIntValidator *intValidator = new QIntValidator;
+    QDoubleValidator *doubleValidator = new QDoubleValidator;
+    ui->amount->setValidator(intValidator);
+    ui->price->setValidator(doubleValidator);
     connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(SeeAmount()));
+    connect(ui->amount, SIGNAL(textChanged(QString)), this, SLOT(setPrice()));
+}
+
+void order::setPrice()
+{
+    QJsonArray jsonArray = items.array();
+
+    for (int i = 0; i < jsonArray.size(); i++)
+    {
+        QJsonObject jsonObj = jsonArray[i].toObject();
+        if (jsonObj["item_name"].toString() == ui->comboBox->currentText())
+        {
+            double pr = jsonObj["price"].toDouble();
+            ui->price->setText(QString::number(pr * ui->amount->text().toInt()));
+        }
+    }
 }
 
 order::~order()
@@ -108,7 +128,8 @@ void order::on_order_2_clicked()
             break;
         }
     }
-    emit broadcastdata(items, clients);
+    double pr = ui->price->text().toDouble();
+    emit broadcastdata(items, clients, pr, name, surname, curItem);
     this->close();
     ui->name->clear();
     ui->surname->clear();

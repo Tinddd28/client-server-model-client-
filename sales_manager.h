@@ -36,7 +36,7 @@ private:
     int user_id;
     bool checkedjson(QString json);
     bool checkedAndExec(QString json, QString json2);
-    void SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients);
+    void SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients, double, QString, QString, QString);
 
 
 public slots:

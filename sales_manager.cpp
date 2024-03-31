@@ -27,7 +27,7 @@ sales_manager::~sales_manager()
     delete ui;
 }
 
-void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients)
+void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients, double price, QString name, QString surname, QString item)
 {
     QJsonObject jsonObj;
     jsonObj.insert("window", "salesmanager");
@@ -40,7 +40,10 @@ void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClien
     QString clientsString = jsonClients.toJson(QJsonDocument::Compact);
     js.insert("items", itemsString);
     js.insert("clients", clientsString);
-    qDebug() << clientsString;
+    js.insert("price", price);
+    js.insert("name", name);
+    js.insert("surname", surname);
+    js.insert("item", item);
 
     jsonObj.insert("changes", js);
 

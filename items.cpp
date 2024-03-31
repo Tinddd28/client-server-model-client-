@@ -17,6 +17,7 @@ void items::on_pushButton_clicked()
 {
     emit backtosm();
     this->close();
+    ui->tableWidget->clear();
 }
 
 void items::outTable(const QString &jsonString)

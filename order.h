@@ -8,6 +8,8 @@
 #include <QJsonParseError>
 #include <QDebug>
 #include <QMessageBox>
+#include <QIntValidator>
+#include <QDoubleValidator>
 
 namespace Ui {
 class order;
@@ -30,15 +32,17 @@ private:
     QJsonDocument items;
     void changeContactInfo(QString mail, QString phone);
 
+
 private slots:
     void on_order_2_clicked();
     void on_back_clicked();
     void SeeAmount();
+    void setPrice();
 
 
 signals:
     void backToSm();
-    void broadcastdata(QJsonDocument, QJsonDocument);
+    void broadcastdata(QJsonDocument, QJsonDocument, double, QString, QString, QString);
 
 private:
     Ui::order *ui;

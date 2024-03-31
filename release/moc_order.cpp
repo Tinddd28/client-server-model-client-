@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_order_t {
-    QByteArrayData data[7];
-    char stringdata0[75];
+    QByteArrayData data[8];
+    char stringdata0[84];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,12 +38,13 @@ QT_MOC_LITERAL(2, 15, 0), // ""
 QT_MOC_LITERAL(3, 16, 13), // "broadcastdata"
 QT_MOC_LITERAL(4, 30, 18), // "on_order_2_clicked"
 QT_MOC_LITERAL(5, 49, 15), // "on_back_clicked"
-QT_MOC_LITERAL(6, 65, 9) // "SeeAmount"
+QT_MOC_LITERAL(6, 65, 9), // "SeeAmount"
+QT_MOC_LITERAL(7, 75, 8) // "setPrice"
 
     },
     "order\0backToSm\0\0broadcastdata\0"
     "on_order_2_clicked\0on_back_clicked\0"
-    "SeeAmount"
+    "SeeAmount\0setPrice"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +54,7 @@ static const uint qt_meta_data_order[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,19 +62,21 @@ static const uint qt_meta_data_order[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x06 /* Public */,
-       3,    2,   40,    2, 0x06 /* Public */,
+       1,    0,   44,    2, 0x06 /* Public */,
+       3,    6,   45,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   45,    2, 0x08 /* Private */,
-       5,    0,   46,    2, 0x08 /* Private */,
-       6,    0,   47,    2, 0x08 /* Private */,
+       4,    0,   58,    2, 0x08 /* Private */,
+       5,    0,   59,    2, 0x08 /* Private */,
+       6,    0,   60,    2, 0x08 /* Private */,
+       7,    0,   61,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QJsonDocument, QMetaType::QJsonDocument,    2,    2,
+    QMetaType::Void, QMetaType::QJsonDocument, QMetaType::QJsonDocument, QMetaType::Double, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,    2,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -88,10 +91,11 @@ void order::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->backToSm(); break;
-        case 1: _t->broadcastdata((*reinterpret_cast< QJsonDocument(*)>(_a[1])),(*reinterpret_cast< QJsonDocument(*)>(_a[2]))); break;
+        case 1: _t->broadcastdata((*reinterpret_cast< QJsonDocument(*)>(_a[1])),(*reinterpret_cast< QJsonDocument(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6]))); break;
         case 2: _t->on_order_2_clicked(); break;
         case 3: _t->on_back_clicked(); break;
         case 4: _t->SeeAmount(); break;
+        case 5: _t->setPrice(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -104,7 +108,7 @@ void order::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
             }
         }
         {
-            using _t = void (order::*)(QJsonDocument , QJsonDocument );
+            using _t = void (order::*)(QJsonDocument , QJsonDocument , double , QString , QString , QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&order::broadcastdata)) {
                 *result = 1;
                 return;
@@ -142,13 +146,13 @@ int order::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
@@ -160,9 +164,9 @@ void order::backToSm()
 }
 
 // SIGNAL 1
-void order::broadcastdata(QJsonDocument _t1, QJsonDocument _t2)
+void order::broadcastdata(QJsonDocument _t1, QJsonDocument _t2, double _t3, QString _t4, QString _t5, QString _t6)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP
