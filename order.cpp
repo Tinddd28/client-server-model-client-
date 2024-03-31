@@ -93,12 +93,14 @@ void order::on_order_2_clicked()
                         newClient["mail"] = mail;
                         newClient["phone"] = phone;
                         jsArray.append(newClient);
+
                         break;
                     }
 
 
-                    clients.setArray(jsArray); // Добавить изменение данных!!!!
+                     // Добавить изменение данных!!!!
                 }
+                clients.setArray(jsArray);
             }
             jsonObj["amount"] = amount - am; //осуществление продажи (умненьшение ассортимента)
             jsonArray[i] = jsonObj;

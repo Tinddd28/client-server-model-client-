@@ -40,6 +40,7 @@ void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClien
     QString clientsString = jsonClients.toJson(QJsonDocument::Compact);
     js.insert("items", itemsString);
     js.insert("clients", clientsString);
+    qDebug() << clientsString;
 
     jsonObj.insert("changes", js);
 
