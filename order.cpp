@@ -79,6 +79,8 @@ void order::on_order_2_clicked()
                         {
                             jsObj["mail"] = mail;
                             jsObj["phone"] = phone;
+                            jsArray[j] = jsObj;
+                            break;
 
                         }
                         else if (ret == QMessageBox::Cancel) return;
@@ -90,10 +92,11 @@ void order::on_order_2_clicked()
                         newClient["surname"] = surname;
                         newClient["mail"] = mail;
                         newClient["phone"] = phone;
-
                         jsArray.append(newClient);
+                        break;
                     }
-                    jsArray[j] = jsObj;
+
+
                     clients.setArray(jsArray); // Добавить изменение данных!!!!
                 }
             }
