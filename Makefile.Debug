@@ -302,6 +302,15 @@ debug\moc_clients.cpp: clients.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonParseError \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
 		debug\moc_predefs.h \
 		..\..\..\qt\5.14.2\msvc2015_64\bin\moc.exe
 	D:\qt\5.14.2\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/PPS_kurs/proj/client/debug/moc_predefs.h -ID:/qt/5.14.2/msvc2015_64/mkspecs/win32-msvc -ID:/PPS_kurs/proj/client -ID:/qt/5.14.2/msvc2015_64/include -ID:/qt/5.14.2/msvc2015_64/include/QtWidgets -ID:/qt/5.14.2/msvc2015_64/include/QtGui -ID:/qt/5.14.2/msvc2015_64/include/QtANGLE -ID:/qt/5.14.2/msvc2015_64/include/QtNetwork -ID:/qt/5.14.2/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" clients.h -o debug\moc_clients.cpp
@@ -914,6 +923,9 @@ debug\moc_order.cpp: order.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonParseError \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QMessageBox \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qmessagebox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdialog.h \
 		debug\moc_predefs.h \
 		..\..\..\qt\5.14.2\msvc2015_64\bin\moc.exe
 	D:\qt\5.14.2\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/PPS_kurs/proj/client/debug/moc_predefs.h -ID:/qt/5.14.2/msvc2015_64/mkspecs/win32-msvc -ID:/PPS_kurs/proj/client -ID:/qt/5.14.2/msvc2015_64/include -ID:/qt/5.14.2/msvc2015_64/include/QtWidgets -ID:/qt/5.14.2/msvc2015_64/include/QtGui -ID:/qt/5.14.2/msvc2015_64/include/QtANGLE -ID:/qt/5.14.2/msvc2015_64/include/QtNetwork -ID:/qt/5.14.2/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" order.h -o debug\moc_order.cpp
@@ -1199,7 +1211,49 @@ debug\clients.obj: clients.cpp clients.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qtouchdevice.h \
-		ui_clients.h
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonParseError \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
+		ui_clients.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QTableWidget \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qtableview.h
 
 debug\director.obj: director.cpp director.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QWidget \
@@ -2026,6 +2080,9 @@ debug\order.obj: order.cpp order.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QJsonParseError \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QDebug \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QMessageBox \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qmessagebox.h \
+		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\qdialog.h \
 		ui_order.h \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtCore\QVariant \
 		..\..\..\qt\5.14.2\msvc2015_64\include\QtWidgets\QApplication \

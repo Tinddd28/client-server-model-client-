@@ -12,6 +12,7 @@ order::order(QWidget *parent) :
 order::~order()
 {
     items = QJsonDocument();
+    clients = QJsonDocument();
     delete ui;
 }
 
@@ -42,9 +43,9 @@ void order::on_order_2_clicked()
     QString curItem = ui->comboBox->currentText();
     QJsonArray jsonArray = items.array();
 
-    for (const auto& jsonValue : jsonArray)
+    for (int i = 0; i < jsonArray.size(); i++)
     {
-        QJsonObject jsonObj = jsonValue.toObject();
+        QJsonObject jsonObj = jsonArray[i].toObject();
         if (jsonObj.value("item_name").toString() == curItem)
         {
             int amount = jsonObj.value("amount").toInt();
@@ -58,9 +59,9 @@ void order::on_order_2_clicked()
             else
             {
                 QJsonArray jsArray = clients.array();
-                for (const auto & jsValue : jsArray)
+                for (int j = 0; j < jsArray.size(); j++)
                 {
-                    QJsonObject jsObj = jsValue.toObject();
+                    QJsonObject jsObj = jsArray[j].toObject();
                     if (jsObj.value("name").toString() == name && jsObj.value("surname").toString() == surname)
                     {
                         QMessageBox msgBox;
@@ -78,6 +79,7 @@ void order::on_order_2_clicked()
                         {
                             jsObj["mail"] = mail;
                             jsObj["phone"] = phone;
+
                         }
                         else if (ret == QMessageBox::Cancel) return;
                     }
@@ -89,14 +91,15 @@ void order::on_order_2_clicked()
                         newClient["mail"] = mail;
                         newClient["phone"] = phone;
 
-                        jsonArray.append(newClient);
+                        jsArray.append(newClient);
                     }
+                    jsArray[j] = jsObj;
                     clients.setArray(jsArray); // Добавить изменение данных!!!!
                 }
-                jsonObj["amount"] = amount - am; //осуществление продажи (умненьшение ассортимента)
-                items.setArray(jsonArray);
             }
-
+            jsonObj["amount"] = amount - am; //осуществление продажи (умненьшение ассортимента)
+            jsonArray[i] = jsonObj;
+            items.setArray(jsonArray);
             break;
         }
     }

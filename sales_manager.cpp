@@ -33,10 +33,14 @@ void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClien
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
     jsonObj.insert("data", "changes");
+    QJsonDocument jsonItemsDoc(jsonItems.object());
+    QByteArray itemsData = jsonItemsDoc.toJson();
     QJsonObject js;
-    js.insert("items", jsonItems.object());
-    qDebug() << jsonClients;
-    js.insert("clients", jsonClients.object());
+    QString itemsString = jsonItems.toJson(QJsonDocument::Compact);
+    QString clientsString = jsonClients.toJson(QJsonDocument::Compact);
+    js.insert("items", itemsString);
+    js.insert("clients", clientsString);
+
     jsonObj.insert("changes", js);
 
     QJsonDocument jsonDoc(jsonObj);
