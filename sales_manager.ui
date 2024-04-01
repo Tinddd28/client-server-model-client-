@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="userId">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>USER ID: 1</string>
+    <string/>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">

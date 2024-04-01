@@ -21,7 +21,7 @@ QT_BEGIN_NAMESPACE
 class Ui_sales_manager
 {
 public:
-    QLabel *label_3;
+    QLabel *userId;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *see_items;
@@ -39,12 +39,12 @@ public:
         if (sales_manager->objectName().isEmpty())
             sales_manager->setObjectName(QString::fromUtf8("sales_manager"));
         sales_manager->resize(660, 357);
-        label_3 = new QLabel(sales_manager);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(470, 210, 151, 111));
+        userId = new QLabel(sales_manager);
+        userId->setObjectName(QString::fromUtf8("userId"));
+        userId->setGeometry(QRect(470, 210, 151, 111));
         QFont font;
         font.setPointSize(14);
-        label_3->setFont(font);
+        userId->setFont(font);
         layoutWidget = new QWidget(sales_manager);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(20, 80, 574, 35));
@@ -108,7 +108,7 @@ public:
     void retranslateUi(QWidget *sales_manager)
     {
         sales_manager->setWindowTitle(QCoreApplication::translate("sales_manager", "Form", nullptr));
-        label_3->setText(QCoreApplication::translate("sales_manager", "USER ID: 1", nullptr));
+        userId->setText(QString());
         see_items->setText(QCoreApplication::translate("sales_manager", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200 \321\202\320\276\320\262\320\260\321\200\320\276\320\262", nullptr));
         order->setText(QCoreApplication::translate("sales_manager", "\320\236\321\204\320\276\321\200\320\274\320\273\320\265\320\275\320\270\320\265 \320\267\320\260\320\272\320\260\320\267\320\260", nullptr));
         see_clients->setText(QCoreApplication::translate("sales_manager", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200 \320\272\320\273\320\270\320\265\320\275\321\202\320\276\320\262", nullptr));

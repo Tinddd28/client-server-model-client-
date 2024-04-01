@@ -12,9 +12,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     sm = new sales_manager(server_ip, server_port);
     dir = new director(server_ip, server_port);
+    mm = new markmanager(server_ip, server_port);
     connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
+    connect(socket, &QTcpSocket::disconnected, mm, &markmanager::resetSocket);
+    connect(mm, &markmanager::backToMain, this, &MainWindow::show);
 }
 
 MainWindow::~MainWindow()
@@ -91,7 +94,8 @@ void MainWindow::selection_role(int id)
     }
     else if (id == 3)
     {
-
+        mm->show();
+        this->hide();
     }
 }
 

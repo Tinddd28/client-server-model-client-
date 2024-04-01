@@ -23,8 +23,10 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     markmanager.cpp \
+    message.cpp \
     order.cpp \
-    sales_manager.cpp
+    sales_manager.cpp \
+    setsale.cpp
 
 HEADERS += \
     clients.h \
@@ -32,8 +34,10 @@ HEADERS += \
     items.h \
     mainwindow.h \
     markmanager.h \
+    message.h \
     order.h \
-    sales_manager.h
+    sales_manager.h \
+    setsale.h
 
 FORMS += \
     clients.ui \
@@ -41,8 +45,10 @@ FORMS += \
     items.ui \
     mainwindow.ui \
     markmanager.ui \
+    message.ui \
     order.ui \
-    sales_manager.ui
+    sales_manager.ui \
+    setsale.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
