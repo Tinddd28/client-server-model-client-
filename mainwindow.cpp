@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
     connect(socket, &QTcpSocket::disconnected, mm, &markmanager::resetSocket);
     connect(mm, &markmanager::backToMain, this, &MainWindow::show);
+    connect(dir, &director::backToMain, this, &MainWindow::show);
 }
 
 MainWindow::~MainWindow()

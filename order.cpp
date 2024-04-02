@@ -62,13 +62,14 @@ void order::on_order_2_clicked()
     int am = ui->amount->text().toInt();
     QString curItem = ui->comboBox->currentText();
     QJsonArray jsonArray = items.array();
-
+    QJsonArray jsArray = clients.array();
+    int amount;
     for (int i = 0; i < jsonArray.size(); i++)
     {
         QJsonObject jsonObj = jsonArray[i].toObject();
         if (jsonObj.value("item_name").toString() == curItem)
         {
-            int amount = jsonObj.value("amount").toInt();
+            amount = jsonObj.value("amount").toInt();
             if (amount < am) //проверка для того, чтобы число товаров не стало отрицательным // в потенциале можно добавить уход в минус для
                 //взаимодействия с потребностями клиентов.
             {
@@ -78,50 +79,45 @@ void order::on_order_2_clicked()
             }
             else
             {
-                QJsonArray jsArray = clients.array();
+                bool clientFound = false;
+
                 for (int j = 0; j < jsArray.size(); j++)
                 {
                     QJsonObject jsObj = jsArray[j].toObject();
                     if (jsObj.value("name").toString() == name && jsObj.value("surname").toString() == surname)
                     {
+                        clientFound = true;
                         QMessageBox msgBox;
                         msgBox.setText("Такой пользователь уже есть.");
                         msgBox.setInformativeText("Хотите изменить контактные данные?");
-                        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-                        msgBox.setDefaultButton(QMessageBox::Save);
                         msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
                         msgBox.setDefaultButton(QMessageBox::Save);
                         msgBox.setButtonText(QMessageBox::Save, "Изменить");
                         msgBox.setButtonText(QMessageBox::Discard, "Оставить");
                         msgBox.setButtonText(QMessageBox::Cancel, "Отменить");
                         int ret = msgBox.exec();
-                        if (ret == QMessageBox::Save)
-                        {
+                        if (ret == QMessageBox::Save) {
                             jsObj["mail"] = mail;
                             jsObj["phone"] = phone;
                             jsArray[j] = jsObj;
-                            break;
-
+                        } else if (ret == QMessageBox::Cancel) {
+                            return;
                         }
-                        else if (ret == QMessageBox::Cancel) return;
-                    }
-                    else
-                    {
-                        QJsonObject newClient;
-                        newClient["name"] = name;
-                        newClient["surname"] = surname;
-                        newClient["mail"] = mail;
-                        newClient["phone"] = phone;
-                        jsArray.append(newClient);
-
                         break;
                     }
-
-
-                     // Добавить изменение данных!!!!
                 }
-                clients.setArray(jsArray);
+
+                if (!clientFound)
+                {
+                    QJsonObject newClient;
+                    newClient["name"] = name;
+                    newClient["surname"] = surname;
+                    newClient["mail"] = mail;
+                    newClient["phone"] = phone;
+                    jsArray.append(newClient);
+                }
             }
+            clients.setArray(jsArray);
             jsonObj["amount"] = amount - am; //осуществление продажи (умненьшение ассортимента)
             jsonArray[i] = jsonObj;
             items.setArray(jsonArray);
@@ -130,6 +126,7 @@ void order::on_order_2_clicked()
     }
     double pr = ui->price->text().toDouble();
     emit broadcastdata(items, clients, pr, name, surname, curItem);
+    QMessageBox::information(this, "Успешно!\t", "Заказ оформлен!");
     this->close();
     ui->name->clear();
     ui->surname->clear();

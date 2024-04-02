@@ -6,6 +6,7 @@ setSale::setSale(QWidget *parent) :
     ui(new Ui::setSale)
 {
     ui->setupUi(this);
+    connect(ui->combo, SIGNAL(currentTextChanged(QString)), this, SLOT(setCurPrice()));
 }
 
 setSale::~setSale()
@@ -13,22 +14,33 @@ setSale::~setSale()
     delete ui;
 }
 
+void setSale::setCurPrice()
+{
+    QJsonArray jsonArray = items.array();
+    for (int i = 0; i < jsonArray.size(); i++)
+    {
+        QJsonObject jsonObj = jsonArray[i].toObject();
+        if (jsonObj["item_name"].toString() == ui->combo->currentText())
+            ui->lineEdit->setText(QString::number(jsonObj["price"].toDouble()));
+    }
+}
+
 void setSale::setComboBox(const QString &jsonString)
 {
     QJsonParseError error;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString.toUtf8(), &error);
+    items = QJsonDocument::fromJson(jsonString.toUtf8(), &error);
     if (error.error != QJsonParseError::NoError)
     {
         qDebug() << "Ошибка при парсинге JSON:" << error.errorString();
         return;
     }
-    if (jsonDoc.array().isEmpty() || jsonDoc.isEmpty())
+    if (items.array().isEmpty() || items.isEmpty())
     {
         return;
     }
     else
     {
-        QJsonArray jsonArray = jsonDoc.array();
+        QJsonArray jsonArray = items.array();
 
         for (const auto& jsonValue : jsonArray)
         {
@@ -37,7 +49,6 @@ void setSale::setComboBox(const QString &jsonString)
             if (jsonObj.value("amount").toInt() > 0)
             {
                 ui->combo->addItem(jsonObj.value("item_name").toString());
-                price = jsonObj.value("price").toDouble();
             }
         }
     }
@@ -45,8 +56,21 @@ void setSale::setComboBox(const QString &jsonString)
 
 void setSale::on_accept_clicked()
 {
-    emit SendNewPrice();
+    QJsonArray jsonArray = items.array();
+    for (int i = 0; i < jsonArray.size(); i++)
+    {
+        QJsonObject jsonObj = jsonArray[i].toObject();
+        if (jsonObj["item_name"].toString() == ui->combo->currentText())
+        {
+            jsonObj["price"] = jsonObj["price"].toDouble() - jsonObj["price"].toDouble() * ui->lineEdit_2->text().toInt() / 100.0;
+            jsonArray[i] = jsonObj;
+            break;
+        }
+    }
+    items.setArray(jsonArray);
+    emit SendNewPrice(items);
     this->close();
+    QMessageBox::information(this, "Успешно!\t", "Скидка применена!");
 }
 
 void setSale::on_back_clicked()

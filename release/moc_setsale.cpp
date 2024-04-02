@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_setSale_t {
-    QByteArrayData data[6];
-    char stringdata0[65];
+    QByteArrayData data[7];
+    char stringdata0[77];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,11 +37,13 @@ QT_MOC_LITERAL(1, 8, 8), // "backTomm"
 QT_MOC_LITERAL(2, 17, 0), // ""
 QT_MOC_LITERAL(3, 18, 12), // "SendNewPrice"
 QT_MOC_LITERAL(4, 31, 17), // "on_accept_clicked"
-QT_MOC_LITERAL(5, 49, 15) // "on_back_clicked"
+QT_MOC_LITERAL(5, 49, 15), // "on_back_clicked"
+QT_MOC_LITERAL(6, 65, 11) // "setCurPrice"
 
     },
     "setSale\0backTomm\0\0SendNewPrice\0"
-    "on_accept_clicked\0on_back_clicked"
+    "on_accept_clicked\0on_back_clicked\0"
+    "setCurPrice"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +53,7 @@ static const uint qt_meta_data_setSale[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,18 +61,20 @@ static const uint qt_meta_data_setSale[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x06 /* Public */,
-       3,    0,   35,    2, 0x06 /* Public */,
+       1,    0,   39,    2, 0x06 /* Public */,
+       3,    1,   40,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   36,    2, 0x08 /* Private */,
-       5,    0,   37,    2, 0x08 /* Private */,
+       4,    0,   43,    2, 0x08 /* Private */,
+       5,    0,   44,    2, 0x08 /* Private */,
+       6,    0,   45,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QJsonDocument,    2,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -84,9 +88,10 @@ void setSale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->backTomm(); break;
-        case 1: _t->SendNewPrice(); break;
+        case 1: _t->SendNewPrice((*reinterpret_cast< QJsonDocument(*)>(_a[1]))); break;
         case 2: _t->on_accept_clicked(); break;
         case 3: _t->on_back_clicked(); break;
+        case 4: _t->setCurPrice(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -99,14 +104,13 @@ void setSale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             }
         }
         {
-            using _t = void (setSale::*)();
+            using _t = void (setSale::*)(QJsonDocument );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&setSale::SendNewPrice)) {
                 *result = 1;
                 return;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject setSale::staticMetaObject = { {
@@ -138,13 +142,13 @@ int setSale::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
@@ -156,9 +160,10 @@ void setSale::backTomm()
 }
 
 // SIGNAL 1
-void setSale::SendNewPrice()
+void setSale::SendNewPrice(QJsonDocument _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

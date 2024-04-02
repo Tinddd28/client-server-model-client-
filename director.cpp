@@ -14,3 +14,9 @@ director::~director()
 {
     delete ui;
 }
+
+void director::on_pushButton_clicked()
+{
+    emit backToMain();
+    this->close();
+}

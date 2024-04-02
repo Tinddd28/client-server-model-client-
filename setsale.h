@@ -31,13 +31,14 @@ private slots:
 
     void on_back_clicked();
 
-private:
+    void setCurPrice();
 
-    double price;
+private:
+    QJsonDocument items;
 
 signals:
     void backTomm();
-    void SendNewPrice();
+    void SendNewPrice(QJsonDocument);
 
 private:
     Ui::setSale *ui;

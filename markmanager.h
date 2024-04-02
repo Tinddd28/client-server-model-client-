@@ -42,6 +42,8 @@ private:
     setSale* sale;
     message* mes;
     void readinfo();
+    void SendDataToServer(QJsonDocument);
+    void sendMessage(QByteArray);
 
 signals:
     void backToMain();

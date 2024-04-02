@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>517</width>
-    <height>364</height>
+    <height>383</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>70</y>
+     <x>20</x>
+     <y>220</y>
      <width>461</width>
-     <height>221</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
@@ -31,8 +31,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>-40</y>
+     <x>90</x>
+     <y>110</y>
      <width>331</width>
      <height>161</height>
     </rect>
@@ -49,8 +49,8 @@
   <widget class="QPushButton" name="send">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>300</y>
+     <x>240</x>
+     <y>310</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -67,8 +67,8 @@
   <widget class="QPushButton" name="back">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>300</y>
+     <x>120</x>
+     <y>310</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -81,6 +81,77 @@
    <property name="text">
     <string>Назад</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>90</y>
+     <width>411</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="user">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Выберите пользователя</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="combo">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>411</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Выберите тип</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="type">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

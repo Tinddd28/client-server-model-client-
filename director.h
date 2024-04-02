@@ -20,6 +20,12 @@ class director : public QWidget
 public:
     explicit director(QString server_ip, int server_port, QWidget *parent = nullptr);
     ~director();
+private slots:
+    void on_pushButton_clicked();
+
+signals:
+    void backToMain();
+
 private:
     QTcpSocket* socket();
     QString server_ip;

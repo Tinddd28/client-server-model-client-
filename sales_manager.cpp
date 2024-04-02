@@ -33,8 +33,6 @@ void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClien
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
     jsonObj.insert("data", "changes");
-    QJsonDocument jsonItemsDoc(jsonItems.object());
-    QByteArray itemsData = jsonItemsDoc.toJson();
     QJsonObject js;
     QString itemsString = jsonItems.toJson(QJsonDocument::Compact);
     QString clientsString = jsonClients.toJson(QJsonDocument::Compact);
@@ -82,6 +80,8 @@ void sales_manager::readinfo()
                     QString data_items = jsonObj.value("items").toString();
                     if (checkedjson(data_items))
                     {
+                        it->show();
+                        this->hide();
                         it->outTable(data_items);
                     }
                     else
@@ -93,6 +93,8 @@ void sales_manager::readinfo()
                     QString data_clients = jsonObj.value("clients").toString();
                     if (checkedjson(data_clients))
                     {
+                        cl->show();
+                        this->hide();
                         cl->OutTable(data_clients);
                     }
 
@@ -106,6 +108,8 @@ void sales_manager::readinfo()
                     QString order_clients = data_order.value("order_clients").toString();
                     if (checkedjson(order_items))
                     {
+                        ord->show();
+                        this->hide();
                         ord->setClients(order_clients);
                         ord->setItems(order_items);
                         ord->addInComboBox(order_items);
@@ -151,9 +155,6 @@ void sales_manager::on_see_items_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-
-    it->show();
-    this->hide();
 }
 
 
@@ -166,9 +167,6 @@ void sales_manager::on_see_clients_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-
-    cl->show();
-    this->hide();
 }
 
 void sales_manager::on_order_clicked()
@@ -180,7 +178,4 @@ void sales_manager::on_order_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-
-    ord->show();
-    this->hide();
 }

@@ -10,6 +10,12 @@ markmanager::markmanager(QString server_ip, int server_port, QWidget *parent) :
     this->server_port = server_port;
     mes = new message();
     sale = new setSale();
+    connect(sale, &setSale::backTomm, this, &markmanager::show);
+    connect(sale, &setSale::SendNewPrice, this, &markmanager::show);
+    connect(sale, &setSale::SendNewPrice, this, &markmanager::SendDataToServer);
+    connect(mes, &message::backToMm, this, &markmanager::show);
+    connect(mes, &message::SendMes, this, &markmanager::sendMessage);
+    connect(mes, &message::SendMes, this, &markmanager::show);
 }
 
 markmanager::~markmanager()
@@ -17,6 +23,31 @@ markmanager::~markmanager()
     delete mes;
     delete sale;
     delete ui;
+}
+
+void markmanager::sendMessage(QByteArray data)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "markmanager");
+    jsonObj.insert("action", "send");
+    QString dataString = QString::fromLatin1(data.toBase64());
+    jsonObj.insert("data", dataString);
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}
+
+void markmanager::SendDataToServer(QJsonDocument jsonDoc)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "markmanager");
+    jsonObj.insert("action", "send_sale");
+    QString itemsString = jsonDoc.toJson(QJsonDocument::Compact);
+    jsonObj.insert("items", itemsString);
+
+    QJsonDocument jsonD(jsonObj);
+    socket->write(jsonD.toJson());
+
 }
 
 void markmanager::resetSocket()
@@ -44,17 +75,19 @@ void markmanager::readinfo()
             QString action = jsonObj.value("action").toString();
             if (action == "message")
             {
-                QJsonObject data = jsonObj.value("data").toObject();
-                QString clients = data.value("clients").toString();
-                QString items = data.value("items").toString();
+                QString clients = jsonObj.value("clients").toString();
+                mes->show();
+                this->hide();
+                mes->setClients(clients);
             }
             else if (action == "set_sale")
             {
                 QString items = jsonObj.value("items").toString();
+                sale->show();
+                this->hide();
                 sale->setComboBox(items);
             }
         }
-
     }
 }
 
@@ -74,8 +107,6 @@ void markmanager::on_setsale_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-    sale->show();
-    this->hide();
 }
 
 void markmanager::on_notif_clicked()
@@ -86,6 +117,4 @@ void markmanager::on_notif_clicked()
 
     QJsonDocument jsonDoc(jsonObj);
     socket->write(jsonDoc.toJson());
-    mes->show();
-    this->hide();
 }
