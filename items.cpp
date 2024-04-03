@@ -17,24 +17,13 @@ void items::on_pushButton_clicked()
 {
     emit backtosm();
     this->close();
+    ui->tableWidget->clear();
 }
 
 void items::outTable(const QString &jsonString)
 {
     QJsonParseError error;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString.toUtf8(), &error);
-
-    if (error.error != QJsonParseError::NoError)
-    {
-        qDebug() << "Ошибка разбора JSON: " << error.errorString();
-        return;
-    }
-
-    if (!jsonDoc.isArray())
-    {
-        qDebug() << "JSON не массив";
-        return;
-    }
 
     QJsonArray jsonArray = jsonDoc.array();
     ui->tableWidget->clear();

@@ -1,41 +1,184 @@
 #include "sales_manager.h"
 #include "ui_sales_manager.h"
 
-sales_manager::sales_manager(QTcpSocket* socket, QWidget *parent) :
-    QWidget(parent), socket(socket),
+sales_manager::sales_manager(QString server_ip, int server_port, QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::sales_manager)
 {
     ui->setupUi(this);
+    this->server_ip = server_ip;
+    this->server_port = server_port;
     it = new items();
+    ord = new order();
+    cl = new clients();
     connect(it, &items::backtosm, this, &sales_manager::show);
+    connect(ord, &order::backToSm, this, &sales_manager::show);
+    connect(cl, &clients::backToSm, this, &sales_manager::show);
+    connect(ord, &order::broadcastdata, this, &sales_manager::SendChanges);
+    connect(ord, &order::broadcastdata, this, &sales_manager::show);
 }
 
 sales_manager::~sales_manager()
 {
+    delete it;
+    delete ord;
+    delete cl;
+    delete socket;
     delete ui;
 }
 
+void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClients, double price, QString name, QString surname, QString item)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "changes");
+    QJsonObject js;
+    QString itemsString = jsonItems.toJson(QJsonDocument::Compact);
+    QString clientsString = jsonClients.toJson(QJsonDocument::Compact);
+    js.insert("items", itemsString);
+    js.insert("clients", clientsString);
+    js.insert("price", price);
+    js.insert("name", name);
+    js.insert("surname", surname);
+    js.insert("item", item);
+
+    jsonObj.insert("changes", js);
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}
+
+void sales_manager::resetSocket()
+{
+    delete socket;
+    socket = new QTcpSocket(this);
+    connect(socket, &QTcpSocket::readyRead, this, &sales_manager::readinfo);
+    socket->connectToHost(server_ip, server_port);
+}
+
+void sales_manager::readinfo()
+{
+    QByteArray responseData = socket->readAll();
+    QList<QByteArray> responses = responseData.split('#');
+
+    for (const QByteArray& response : responses)
+    {
+        if (response.isEmpty()) continue;
+
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QJsonObject jsonObj = jsonDoc.object();
+        QString window = jsonObj.value("window").toString();
+        if (window == "salesmanager")
+        {
+            QString action = jsonObj.value("action").toString();
+            if (action == "data")
+            {
+                QString data = jsonObj.value("data").toString();
+                if (data == "items")
+                {
+                    QString data_items = jsonObj.value("items").toString();
+                    if (checkedjson(data_items))
+                    {
+                        it->show();
+                        this->hide();
+                        it->outTable(data_items);
+                    }
+                    else
+                        QMessageBox::warning(this, "Ошибка!\t", "Список товаров пуст!");
+
+                }
+                else if (data == "clients")
+                {
+                    QString data_clients = jsonObj.value("clients").toString();
+                    if (checkedjson(data_clients))
+                    {
+                        cl->show();
+                        this->hide();
+                        cl->OutTable(data_clients);
+                    }
+
+                    else
+                        QMessageBox::warning(this, "Ошибка!\t", "База с клиентами пуста!");
+                }
+                else if (data == "order")
+                {
+                    QJsonObject data_order = jsonObj.value("order").toObject();
+                    QString order_items = data_order.value("order_items").toString();
+                    QString order_clients = data_order.value("order_clients").toString();
+                    if (checkedjson(order_items))
+                    {
+                        ord->show();
+                        this->hide();
+                        ord->setClients(order_clients);
+                        ord->setItems(order_items);
+                        ord->addInComboBox(order_items);
+                        //write code for order
+                    }
+                    else
+                    {
+                        QMessageBox::warning(this, "Ошибка!\t", "Список товаров пуст!");
+                    }
+                }
+            }
+        }
+    }
+}
+
+bool sales_manager::checkedjson(QString json)
+{
+    QJsonParseError error;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(json.toUtf8(), &error);
+    if (error.error != QJsonParseError::NoError) {
+            qDebug() << "Ошибка при парсинге JSON:" << error.errorString();
+            return false;
+        }
+    if (jsonDoc.array().isEmpty() || jsonDoc.isEmpty()) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
 
 void sales_manager::on_back_clicked()
 {
     emit backToMain();
-    this->hide();
+    this->close();
 }
 
 void sales_manager::on_see_items_clicked()
 {
-    Data.clear();
-    QDataStream out(&Data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_14);
-    out << quint16(0) << 2;
-    out.device()->seek(0);
-    out << quint16(Data.size() - sizeof(quint16));
-    socket->write(Data);
-    it->show();
-    this->hide();
+    it->setWindowTitle("Просмотр товаров");
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "items");
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
 }
 
 
+void sales_manager::on_see_clients_clicked()
+{
+    cl->setWindowTitle("Просмотр клиентов");
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "clients");
 
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}
 
+void sales_manager::on_order_clicked()
+{
+    ord->setWindowTitle("Оформление заказа");
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "salesmanager");
+    jsonObj.insert("action", "data");
+    jsonObj.insert("data", "order");
 
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}

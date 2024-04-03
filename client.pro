@@ -17,20 +17,68 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adduser.cpp \
+    clients.cpp \
+    clientsd.cpp \
+    dataout.cpp \
+    deluser.cpp \
+    director.cpp \
+    edituser.cpp \
     items.cpp \
+    itemsd.cpp \
     main.cpp \
     mainwindow.cpp \
-    sales_manager.cpp
+    markmanager.cpp \
+    mess.cpp \
+    message.cpp \
+    order.cpp \
+    orders.cpp \
+    sales_manager.cpp \
+    setsale.cpp \
+    users.cpp \
+    usview.cpp
 
 HEADERS += \
+    adduser.h \
+    clients.h \
+    clientsd.h \
+    dataout.h \
+    deluser.h \
+    director.h \
+    edituser.h \
     items.h \
+    itemsd.h \
     mainwindow.h \
-    sales_manager.h
+    markmanager.h \
+    mess.h \
+    message.h \
+    order.h \
+    orders.h \
+    sales_manager.h \
+    setsale.h \
+    users.h \
+    usview.h
 
 FORMS += \
+    adduser.ui \
+    clients.ui \
+    clientsd.ui \
+    dataout.ui \
+    deluser.ui \
+    director.ui \
+    edituser.ui \
     items.ui \
+    itemsd.ui \
     mainwindow.ui \
-    sales_manager.ui
+    markmanager.ui \
+    mess.ui \
+    message.ui \
+    order.ui \
+    orders.ui \
+    sales_manager.ui \
+    setsale.ui \
+    users.ui \
+    usview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

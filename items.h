@@ -22,6 +22,10 @@ public:
 
     void outTable(const QString &jsonString);
 
+
+private:
+
+
 private slots:
     void on_pushButton_clicked();
 
