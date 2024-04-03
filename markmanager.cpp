@@ -101,6 +101,7 @@ void markmanager::on_back_clicked()
 
 void markmanager::on_setsale_clicked()
 {
+    sale->setWindowTitle("Применение скидки");
     QJsonObject jsonObj;
     jsonObj.insert("window", "markmanager");
     jsonObj.insert("action", "set_sale");
@@ -111,6 +112,7 @@ void markmanager::on_setsale_clicked()
 
 void markmanager::on_notif_clicked()
 {
+    mes->setWindowTitle("Сообщение");
     QJsonObject jsonObj;
     jsonObj.insert("window", "markmanager");
     jsonObj.insert("action", "message");

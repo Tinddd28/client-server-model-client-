@@ -53,4 +53,4 @@ void clients::on_back_clicked()
          ui->tableWidget->setItem(row, 3, phoneItem);
          row++;
      }
- }
+}

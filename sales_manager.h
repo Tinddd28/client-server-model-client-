@@ -2,6 +2,7 @@
 #define SALES_MANAGER_H
 
 #include <QWidget>
+#include <QObject>
 #include <QTcpSocket>
 #include <QJsonParseError>
 #include <QJsonArray>

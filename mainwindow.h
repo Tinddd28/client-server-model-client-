@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QObject>
 #include <QTcpSocket>
 #include <QTcpServer>
 #include <QDataStream>

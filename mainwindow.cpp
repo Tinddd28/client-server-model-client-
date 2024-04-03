@@ -13,12 +13,13 @@ MainWindow::MainWindow(QWidget *parent)
     sm = new sales_manager(server_ip, server_port);
     dir = new director(server_ip, server_port);
     mm = new markmanager(server_ip, server_port);
-    connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
+    //connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
     connect(socket, &QTcpSocket::disconnected, mm, &markmanager::resetSocket);
-    connect(mm, &markmanager::backToMain, this, &MainWindow::show);
-    connect(dir, &director::backToMain, this, &MainWindow::show);
+    //connect(mm, &markmanager::backToMain, this, &MainWindow::show);
+    //connect(dir, &director::backToMain, this, &MainWindow::show);
+    connect(socket, &QTcpSocket::disconnected, dir, &director::resetSocket);
 }
 
 MainWindow::~MainWindow()
@@ -85,18 +86,18 @@ void MainWindow::selection_role(int id)
     socket->close();
     if (id == 1)
     {
+        dir->setWindowTitle("Директор");
         dir->show();
-        this->hide();
     }
     else if (id == 2)
     {
+        sm->setWindowTitle("Менеджер по продажам");
         sm->show();
-        this->hide();
     }
     else if (id == 3)
     {
+        mm->setWindowTitle("Менеджер по маркетингу");
         mm->show();
-        this->hide();
     }
 }
 

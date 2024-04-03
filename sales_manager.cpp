@@ -148,6 +148,7 @@ void sales_manager::on_back_clicked()
 
 void sales_manager::on_see_items_clicked()
 {
+    it->setWindowTitle("Просмотр товаров");
     QJsonObject jsonObj;
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
@@ -160,6 +161,7 @@ void sales_manager::on_see_items_clicked()
 
 void sales_manager::on_see_clients_clicked()
 {
+    cl->setWindowTitle("Просмотр клиентов");
     QJsonObject jsonObj;
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
@@ -171,6 +173,7 @@ void sales_manager::on_see_clients_clicked()
 
 void sales_manager::on_order_clicked()
 {
+    ord->setWindowTitle("Оформление заказа");
     QJsonObject jsonObj;
     jsonObj.insert("window", "salesmanager");
     jsonObj.insert("action", "data");
