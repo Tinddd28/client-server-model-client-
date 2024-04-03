@@ -43,7 +43,7 @@ private slots:
 
 
 private:
-    QString server_ip = "192.168.6.133";
+    QString server_ip = "ip";
     int server_port = 2323;
     QTcpSocket *socket;
     QByteArray Data;
