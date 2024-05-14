@@ -91,7 +91,6 @@ QByteArray director::serialize(QVector<QString> vector)
 
 void director::resetSocket()
 {
-    delete socket;
     socket = new QTcpSocket(this);
     socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &director::readinfo);

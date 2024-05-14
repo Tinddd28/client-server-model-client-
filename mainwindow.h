@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QTcpSocket>
-#include <QTcpServer>
 #include <QDataStream>
 #include <QMessageBox>
 #include <QTimer>
@@ -12,8 +11,8 @@
 #include <sales_manager.h>
 #include <director.h>
 #include <markmanager.h>
-
 #include <QDebug>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -41,15 +40,17 @@ private slots:
 
     void connectToServer();
 
+    void checkConnection();
 
 private:
-    QString server_ip = "ip";
+    QString server_ip = "127.0.0.1";
     int server_port = 2323;
     QTcpSocket *socket;
     QByteArray Data;
     void SendLogin(QString user, QString password);
     void selection_role(int id);
     int flag_auth = 0;
+    QTimer *timer;
 
 
 private:

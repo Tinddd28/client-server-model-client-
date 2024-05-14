@@ -51,7 +51,6 @@ void sales_manager::SendChanges(QJsonDocument jsonItems, QJsonDocument jsonClien
 
 void sales_manager::resetSocket()
 {
-    delete socket;
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &sales_manager::readinfo);
     socket->connectToHost(server_ip, server_port);

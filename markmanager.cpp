@@ -52,7 +52,6 @@ void markmanager::SendDataToServer(QJsonDocument jsonDoc)
 
 void markmanager::resetSocket()
 {
-    delete socket;
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &markmanager::readinfo);
     socket->connectToHost(server_ip, server_port);

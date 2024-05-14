@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     socket->disconnectFromHost();
-    //socket->connectToHost(server_ip, server_port);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     sm = new sales_manager(server_ip, server_port);
     dir = new director(server_ip, server_port);
@@ -20,11 +19,14 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(mm, &markmanager::backToMain, this, &MainWindow::show);
     //connect(dir, &director::backToMain, this, &MainWindow::show);
     connect(socket, &QTcpSocket::disconnected, dir, &director::resetSocket);
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::checkConnection);
+    timer->start(5000);
+    connectToServer();
 }
 
 MainWindow::~MainWindow()
 {
-    delete socket;
     delete sm;
     delete dir;
     delete ui;
@@ -33,6 +35,16 @@ MainWindow::~MainWindow()
 void MainWindow::connectToServer()
 {
     socket->connectToHost(server_ip, server_port);
+}
+
+void MainWindow::checkConnection()
+{
+    if (socket->state() == QAbstractSocket::UnconnectedState)
+    {
+        qDebug() << "Attempting to reconnect...";
+        connectToServer();
+    }
+    else qDebug() << "Connection is active!";
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -143,3 +155,5 @@ void MainWindow::on_checkBox_stateChanged()
     else
         ui->lineEdit_2->setEchoMode(QLineEdit::Password);
 }
+
+
