@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     sm = new sales_manager(server_ip, server_port);
     dir = new director(server_ip, server_port);
     mm = new markmanager(server_ip, server_port);
+    r_p = new reset_pass();
+    i_p = new input_pass();
     //connect(sm, &sales_manager::backToMain, this, &MainWindow::show);
     ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     connect(socket, &QTcpSocket::disconnected, sm, &sales_manager::resetSocket);
@@ -23,6 +25,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &MainWindow::checkConnection);
     timer->start(5000);
     connectToServer();
+    connect(r_p, &reset_pass::back, this, &MainWindow::show);
+    connect(r_p, &reset_pass::send_data_for_reset, this, &MainWindow::send_data_for_reset);
+    connect(r_p, &reset_pass::send_request_for_open, this, &MainWindow::open_window_for_change_pass);
+    connect(i_p, &input_pass::change_pass, this, &MainWindow::show);
+    connect(i_p, &input_pass::change_pass, this, &MainWindow::change_pass);
+
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +38,49 @@ MainWindow::~MainWindow()
     delete sm;
     delete dir;
     delete ui;
+}
+
+void MainWindow::change_pass(QString pass)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "mainwindow");
+    jsonObj.insert("action", "change");
+    QJsonObject jsData;
+    jsData.insert("pass", pass);
+    jsData.insert("name", name);
+    jsData.insert("sname", sname);
+    jsData.insert("login", login);
+    jsData.insert("mail", mail);
+    jsonObj.insert("data", jsData);
+    qDebug() << login;
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
+}
+
+void MainWindow::open_window_for_change_pass(QString name, QString sname, QString login, QString mail)
+{
+    this->login = login;
+    this->name = name;
+    this->sname = sname;
+    this->mail = mail;
+    i_p->setWindowTitle("Восстановаление пароля для " + login);
+    i_p->show();
+}
+
+void MainWindow::send_data_for_reset(QString name, QString sname, QString login, QString mail)
+{
+    QJsonObject jsonObj;
+    jsonObj.insert("window", "mainwindow");
+    jsonObj.insert("action", "reset");
+    QJsonObject jsonData;
+    jsonData.insert("name", name);
+    jsonData.insert("sname", sname);
+    jsonData.insert("login", login);
+    jsonData.insert("mail", mail);
+    jsonObj.insert("data", jsonData);
+
+    QJsonDocument jsonDoc(jsonObj);
+    socket->write(jsonDoc.toJson());
 }
 
 void MainWindow::connectToServer()
@@ -88,6 +139,25 @@ void MainWindow::slotReadyRead()
                     flag_auth = 0;
                 }
             }
+            else if (action == "reset")
+            {
+                int flag = jsonObj.value("flag").toInt();
+                qDebug() << flag;
+                r_p->handle_flag(flag);
+            }
+            else if (action == "result")
+            {
+                int flag = jsonObj.value("result").toInt();
+                if (flag)
+                {
+                    QMessageBox::information(this, "Успешно\t", "Пароль был изменен!");
+                }
+                else
+                {
+                    QMessageBox::warning(this, "Ошибка", "Что-то пошло не так...");
+                }
+                i_p->close();
+            }
         }
     }
 }
@@ -118,7 +188,6 @@ void MainWindow::SendLogin(QString user, QString password)
     if(socket->state() != QAbstractSocket::ConnectedState){
            connectToServer();
            QMessageBox::warning(this, "Ошибка", "Нет соединения с сервером");
-
            return;
     }
 
@@ -156,4 +225,11 @@ void MainWindow::on_checkBox_stateChanged()
         ui->lineEdit_2->setEchoMode(QLineEdit::Password);
 }
 
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    r_p->setWindowTitle("Восстановление пароля");
+    r_p->show();
+}
 

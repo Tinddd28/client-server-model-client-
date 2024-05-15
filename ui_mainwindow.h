@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.10
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -39,6 +39,8 @@ public:
     QLabel *label_6;
     QLineEdit *lineEdit_2;
     QCheckBox *checkBox;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton_2;
     QPushButton *pushButton;
 
     void setupUi(QMainWindow *MainWindow)
@@ -50,7 +52,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(120, 80, 185, 205));
+        layoutWidget->setGeometry(QRect(100, 60, 219, 206));
         QFont font;
         font.setPointSize(12);
         layoutWidget->setFont(font);
@@ -117,14 +119,26 @@ public:
 
         checkBox = new QCheckBox(layoutWidget);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
+        checkBox->setCursor(QCursor(Qt::CrossCursor));
 
         verticalLayout->addWidget(checkBox);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        pushButton_2 = new QPushButton(layoutWidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setFont(font);
+
+        horizontalLayout_3->addWidget(pushButton_2);
 
         pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setFont(font);
 
-        verticalLayout->addWidget(pushButton);
+        horizontalLayout_3->addWidget(pushButton);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         MainWindow->setCentralWidget(centralwidget);
 
@@ -145,6 +159,7 @@ public:
         label_6->setText(QString());
         lineEdit_2->setText(QString());
         checkBox->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\261\321\213\320\273\320\270 \320\277\320\260\321\200\320\276\320\273\321\214?", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\320\222\320\276\320\271\321\202\320\270", nullptr));
     } // retranslateUi
 

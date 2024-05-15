@@ -13,6 +13,9 @@
 #include <markmanager.h>
 #include <QDebug>
 
+#include <reset_pass.h>
+#include <input_pass.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,10 +28,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
+    reset_pass *r_p;
     sales_manager* sm;
     director* dir;
     markmanager* mm;
+    input_pass* i_p;
 
 private slots:
     void on_pushButton_clicked();
@@ -42,6 +46,14 @@ private slots:
 
     void checkConnection();
 
+    void on_pushButton_2_clicked();
+
+    void send_data_for_reset(QString, QString, QString, QString);
+
+    void open_window_for_change_pass(QString name, QString sname, QString login, QString mail);
+
+    void change_pass(QString);
+
 private:
     QString server_ip = "127.0.0.1";
     int server_port = 2323;
@@ -51,6 +63,10 @@ private:
     void selection_role(int id);
     int flag_auth = 0;
     QTimer *timer;
+    QString name;
+    QString sname;
+    QString mail;
+    QString login;
 
 
 private:

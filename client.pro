@@ -24,6 +24,7 @@ SOURCES += \
     deluser.cpp \
     director.cpp \
     edituser.cpp \
+    input_pass.cpp \
     items.cpp \
     itemsd.cpp \
     main.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     message.cpp \
     order.cpp \
     orders.cpp \
+    reset_pass.cpp \
     sales_manager.cpp \
     setsale.cpp \
     users.cpp \
@@ -46,6 +48,7 @@ HEADERS += \
     deluser.h \
     director.h \
     edituser.h \
+    input_pass.h \
     items.h \
     itemsd.h \
     mainwindow.h \
@@ -54,6 +57,7 @@ HEADERS += \
     message.h \
     order.h \
     orders.h \
+    reset_pass.h \
     sales_manager.h \
     setsale.h \
     users.h \
@@ -67,6 +71,7 @@ FORMS += \
     deluser.ui \
     director.ui \
     edituser.ui \
+    input_pass.ui \
     items.ui \
     itemsd.ui \
     mainwindow.ui \
@@ -75,6 +80,7 @@ FORMS += \
     message.ui \
     order.ui \
     orders.ui \
+    reset_pass.ui \
     sales_manager.ui \
     setsale.ui \
     users.ui \
